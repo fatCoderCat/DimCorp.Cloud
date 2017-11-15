@@ -55,7 +55,11 @@ namespace DimCorp.Cloud.ProductCatalog
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
             _repo = new ServiceFabricProductRepository(this.StateManager);
+            await SeedStorage();
+        }
 
+        private async Task SeedStorage()
+        {
             var product1 = new Product
             {
                 Id = Guid.NewGuid(),
@@ -86,8 +90,6 @@ namespace DimCorp.Cloud.ProductCatalog
             await _repo.AddProduct(product1);
             await _repo.AddProduct(product2);
             await _repo.AddProduct(product3);
-
-            IEnumerable<Product> all = await _repo.GetAllProducts();
         }
     }
 }

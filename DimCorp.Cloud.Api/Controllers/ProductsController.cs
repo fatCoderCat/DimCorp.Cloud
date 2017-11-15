@@ -25,24 +25,16 @@ namespace DimCorp.Cloud.Api.Controllers
         [HttpGet]
         public async Task<IEnumerable<ApiProduct>> Get()
         {
-            try
-            {
-                IEnumerable<Product> allProducts = await _catalogService.GetAllProducts();
+            IEnumerable<Product> allProducts = await _catalogService.GetAllProducts();
 
-                return allProducts.Select(p => new ApiProduct
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Description = p.Description,
-                    Price = p.Price,
-                    IsAvailable = p.Availability > 0
-                });
-            }
-            catch (Exception e)
+            return allProducts.Select(p => new ApiProduct
             {
-                return null;
-            }
-
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                Price = p.Price,
+                IsAvailable = p.Availability > 0
+            });
         }
 
         [HttpPost]

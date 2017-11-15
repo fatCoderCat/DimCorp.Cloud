@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace DimCorp.Cloud.ProductCatalog
@@ -9,7 +8,7 @@ namespace DimCorp.Cloud.ProductCatalog
     internal static class Program
     {
         /// <summary>
-        /// This is the entry point of the service host process.
+        ///     This is the entry point of the service host process.
         /// </summary>
         private static void Main()
         {
@@ -23,7 +22,8 @@ namespace DimCorp.Cloud.ProductCatalog
                 ServiceRuntime.RegisterServiceAsync("DimCorp.Cloud.ProductCatalogType",
                     context => new ProductCatalog(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(ProductCatalog).Name);
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id,
+                    typeof(ProductCatalog).Name);
 
                 // Prevents this host process from terminating so services keep running.
                 Thread.Sleep(Timeout.Infinite);
