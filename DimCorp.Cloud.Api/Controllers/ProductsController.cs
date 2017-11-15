@@ -40,7 +40,7 @@ namespace DimCorp.Cloud.Api.Controllers
         [HttpPost]
         public async Task Post([FromBody] ApiProduct product)
         {
-            var newProduct = new Product()
+            var newProduct = new Product
             {
                 Id = Guid.NewGuid(),
                 Name = product.Name,

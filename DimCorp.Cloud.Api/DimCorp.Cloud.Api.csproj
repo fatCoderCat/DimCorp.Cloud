@@ -14,6 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="Microsoft.ServiceFabric" Version="6.0.232" />
+    <PackageReference Include="Microsoft.ServiceFabric.Actors" Version="2.8.232" />
     <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="2.7.198" />
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.8.232" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.8.232" />
@@ -27,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DimCorp.Cloud.ProductCatalog.Model\DimCorp.Cloud.ProductCatalog.Model.csproj" />
     <ProjectReference Include="..\DimCorp.Cloud.ProductCatalog\DimCorp.Cloud.ProductCatalog.csproj" />
+    <ProjectReference Include="..\DimCorp.Cloud.UserActor.Interfaces\DimCorp.Cloud.UserActor.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
