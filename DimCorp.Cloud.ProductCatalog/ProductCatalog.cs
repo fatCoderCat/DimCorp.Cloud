@@ -26,6 +26,11 @@ namespace DimCorp.Cloud.ProductCatalog
             await _repo.AddProduct(product);
         }
 
+        public async Task<Product> GetProduct(Guid productId)
+        {
+            return await _repo.GetProduct(productId);
+        }
+
         public async Task<IEnumerable<Product>> GetAllProducts()
         {
             return await _repo.GetAllProducts();

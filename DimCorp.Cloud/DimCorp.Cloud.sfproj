@@ -33,6 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DimCorp.Cloud.Api\DimCorp.Cloud.Api.csproj" />
+    <ProjectReference Include="..\DimCorp.Cloud.Checkout\DimCorp.Cloud.Checkout.csproj" />
     <ProjectReference Include="..\DimCorp.Cloud.ProductCatalog\DimCorp.Cloud.ProductCatalog.csproj" />
     <ProjectReference Include="..\DimCorp.Cloud.UserActor\DimCorp.Cloud.UserActor.csproj" />
   </ItemGroup>

@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DimCorp.Cloud.Checkout.Model\DimCorp.Cloud.Checkout.Model.csproj" />
     <ProjectReference Include="..\DimCorp.Cloud.ProductCatalog.Model\DimCorp.Cloud.ProductCatalog.Model.csproj" />
     <ProjectReference Include="..\DimCorp.Cloud.ProductCatalog\DimCorp.Cloud.ProductCatalog.csproj" />
     <ProjectReference Include="..\DimCorp.Cloud.UserActor.Interfaces\DimCorp.Cloud.UserActor.Interfaces.csproj" />

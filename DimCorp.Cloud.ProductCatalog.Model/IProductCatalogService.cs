@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Services.Remoting;
 
@@ -9,5 +10,7 @@ namespace DimCorp.Cloud.ProductCatalog.Model
         Task<IEnumerable<Product>> GetAllProducts();
 
         Task AddProduct(Product product);
+
+        Task<Product> GetProduct(Guid productId);
     }
 }

@@ -37,6 +37,22 @@ namespace DimCorp.Cloud.Api.Controllers
             });
         }
 
+        [HttpGet("{productId}")]
+        public async Task<ApiProduct> Get(Guid productId)
+        {
+            var product = await _catalogService.GetProduct(productId);
+
+            //TODO: make converter
+            return new ApiProduct
+            {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Description = product.Description,
+                    Price = product.Price,
+                    IsAvailable = product.Availability > 0
+            };
+        }
+
         [HttpPost]
         public async Task Post([FromBody] ApiProduct product)
         {
