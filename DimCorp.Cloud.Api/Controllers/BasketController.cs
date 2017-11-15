@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DimCorp.Cloud.Api.Model;
+using DimCorp.Cloud.Common;
 using DimCorp.Cloud.UserActor.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ServiceFabric.Actors;
@@ -15,19 +14,8 @@ namespace DimCorp.Cloud.Api.Controllers
         [HttpGet("{userId}")]
         public async Task<ApiBasket> Get(string userId)
         {
-            var actor = GetActor(userId);
-            var products = await actor.GetBasket();
-            return new ApiBasket
-            {
-                UserId = userId,
-                Items = products.Select(x =>
-                    new ApiBasketItem
-                    {
-                        ProductId = x.Key.ToString(),
-                        Quantity = x.Value
-                    })
-                    .ToArray()
-            };
+            var products = await GetActor(userId).GetBasket();
+            return products.ToVm(userId);
         }
 
         [HttpPost("{userId}")]
@@ -46,9 +34,7 @@ namespace DimCorp.Cloud.Api.Controllers
 
         private IUserActor GetActor(string userId)
         {
-            return ActorProxy.Create<IUserActor>(
-                new ActorId(userId),
-                new Uri("fabric:/DimCorp.Cloud/UserActorService"));
+            return ActorProxy.Create<IUserActor>(new ActorId(userId), ServiceAddress.UserActor);
         }
     }
 }

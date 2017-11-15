@@ -14,4 +14,19 @@ namespace DimCorp.Cloud.ProductCatalog.Model
 
         public int Availability { get; set; }
     }
+
+    public static class ProductBuilder
+    {
+        public static Product WithNewGuid(this Product product)
+        {
+            product.Id = Guid.NewGuid();
+            return product;
+        }
+
+        public static Product WithAvailability(this Product product, int quantity)
+        {
+            product.Availability = quantity;
+            return product;
+        }
+    }
 }

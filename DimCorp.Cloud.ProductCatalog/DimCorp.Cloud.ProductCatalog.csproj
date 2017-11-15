@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IProductRepository.cs" />
+    <Compile Include="ProductRepositorySeeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProductCatalog.cs" />
     <Compile Include="Program.cs" />

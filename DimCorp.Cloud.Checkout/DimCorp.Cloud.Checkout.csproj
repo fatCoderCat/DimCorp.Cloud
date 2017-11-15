@@ -95,6 +95,7 @@
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CheckoutService.cs" />
     <Compile Include="Program.cs" />
@@ -110,6 +111,10 @@
     <ProjectReference Include="..\DimCorp.Cloud.Checkout.Model\DimCorp.Cloud.Checkout.Model.csproj">
       <Project>{334e1ce8-6096-4b6d-8353-9e4ed36fc3dc}</Project>
       <Name>DimCorp.Cloud.Checkout.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DimCorp.Cloud.Common\DimCorp.Cloud.Common.csproj">
+      <Project>{a3da5abb-4a11-4d6f-a2b2-131f52d8c0d6}</Project>
+      <Name>DimCorp.Cloud.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\DimCorp.Cloud.ProductCatalog.Model\DimCorp.Cloud.ProductCatalog.Model.csproj">
       <Project>{f97636a0-b346-47d6-8989-1ce14e2c523a}</Project>

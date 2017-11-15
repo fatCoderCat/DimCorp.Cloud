@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Fabric;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DimCorp.Cloud.Checkout.Model;
+using DimCorp.Cloud.Common;
 using DimCorp.Cloud.ProductCatalog.Model;
 using DimCorp.Cloud.UserActor.Interfaces;
 using Microsoft.ServiceFabric.Actors;
@@ -29,11 +29,7 @@ namespace DimCorp.Cloud.Checkout
 
         public async Task<CheckoutSummary> Checkout(string userId)
         {
-            var result = new CheckoutSummary
-            {
-                Date = DateTime.UtcNow,
-                Products = new List<CheckoutProduct>()
-            };
+            var result = CheckoutSummaryBuilder.Create();
 
             //call user actor to get the basket
             var userActor = GetUserActor(userId);
@@ -45,24 +41,12 @@ namespace DimCorp.Cloud.Checkout
             //constuct CheckoutProduct items by calling to the catalog
             foreach (var basketLine in basket)
             {
-                Product product = await catalogService.GetProduct(basketLine.Key);
-                var checkoutProduct = new CheckoutProduct
-                {
-                    Product = product,
-                    Price = product.Price,
-                    Quantity = basketLine.Value
-                };
-                result.Products.Add(checkoutProduct);
+                var product = await catalogService.GetProduct(basketLine.Key);
+                result.WithProduct(product.ToCheckoutProduct(basketLine.Value));
             }
-
-            //generate total price
-            result.TotalPrice = result.Products.Sum(p => p.Price);
-
-            //clear user basket
+            
             await userActor.ClearBasket();
-
             await AddToHistory(result);
-
             return result;
         }
         
@@ -75,13 +59,8 @@ namespace DimCorp.Cloud.Checkout
             {
                 var allProducts = await history.CreateEnumerableAsync(tx, EnumerationMode.Unordered);
                 using (var enumerator = allProducts.GetAsyncEnumerator())
-                {
                     while (await enumerator.MoveNextAsync(CancellationToken.None))
-                    {
-                        var current = enumerator.Current;
-                        result.Add(current.Value);
-                    }
-                }
+                        result.Add(enumerator.Current.Value);
             }
 
             return result;
@@ -94,20 +73,19 @@ namespace DimCorp.Cloud.Checkout
             using (var tx = StateManager.CreateTransaction())
             {
                 await history.AddAsync(tx, checkout.Date, checkout);
-
                 await tx.CommitAsync();
             }
         }
 
         private IUserActor GetUserActor(string userId)
         {
-            return ActorProxy.Create<IUserActor>(new ActorId(userId), new Uri("fabric:/DimCorp.Cloud/UserActorService"));
+            return ActorProxy.Create<IUserActor>(new ActorId(userId), ServiceAddress.UserActor);
         }
 
         private IProductCatalogService GetProductCatalogService()
         {
             return ServiceProxy.Create<IProductCatalogService>(
-               new Uri("fabric:/DimCorp.Cloud/DimCorp.Cloud.ProductCatalog"),
+                ServiceAddress.ProductCatalog,
                new ServicePartitionKey(0));
         }
 

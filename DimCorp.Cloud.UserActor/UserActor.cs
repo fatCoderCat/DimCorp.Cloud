@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
-using Microsoft.ServiceFabric.Actors.Client;
 using DimCorp.Cloud.UserActor.Interfaces;
 
 namespace DimCorp.Cloud.UserActor
@@ -40,23 +37,21 @@ namespace DimCorp.Cloud.UserActor
 
         public async Task ClearBasket()
         {
-            IEnumerable<string> productIDs = await StateManager.GetStateNamesAsync();
+            var productIds = await StateManager.GetStateNamesAsync();
 
-            foreach (string productId in productIDs)
-            {
+            foreach (string productId in productIds)
                 await StateManager.RemoveStateAsync(productId);
-            }
         }
 
         public async Task<Dictionary<Guid, int>> GetBasket()
         {
             var result = new Dictionary<Guid, int>();
 
-            IEnumerable<string> productIDs = await StateManager.GetStateNamesAsync();
+            var productIDs = await StateManager.GetStateNamesAsync();
 
             foreach (string productId in productIDs)
             {
-                int quantity = await StateManager.GetStateAsync<int>(productId);
+                var quantity = await StateManager.GetStateAsync<int>(productId);
                 result[new Guid(productId)] = quantity;
             }
 

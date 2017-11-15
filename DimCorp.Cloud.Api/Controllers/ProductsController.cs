@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DimCorp.Cloud.Api.Model;
+using DimCorp.Cloud.Common;
 using DimCorp.Cloud.ProductCatalog.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.ServiceFabric.Services.Client;
@@ -18,52 +19,28 @@ namespace DimCorp.Cloud.Api.Controllers
         public ProductsController()
         {
             _catalogService = ServiceProxy.Create<IProductCatalogService>(
-                new Uri("fabric:/DimCorp.Cloud/DimCorp.Cloud.ProductCatalog"),
+                ServiceAddress.ProductCatalog,
                 new ServicePartitionKey(0));
         }
 
         [HttpGet]
         public async Task<IEnumerable<ApiProduct>> Get()
         {
-            IEnumerable<Product> allProducts = await _catalogService.GetAllProducts();
-
-            return allProducts.Select(p => new ApiProduct
-            {
-                Id = p.Id,
-                Name = p.Name,
-                Description = p.Description,
-                Price = p.Price,
-                IsAvailable = p.Availability > 0
-            });
+            var allProducts = await _catalogService.GetAllProducts();
+            return allProducts.Select(p => p.ToVm());
         }
 
         [HttpGet("{productId}")]
         public async Task<ApiProduct> Get(Guid productId)
         {
             var product = await _catalogService.GetProduct(productId);
-
-            //TODO: make converter
-            return new ApiProduct
-            {
-                    Id = product.Id,
-                    Name = product.Name,
-                    Description = product.Description,
-                    Price = product.Price,
-                    IsAvailable = product.Availability > 0
-            };
+            return product.ToVm();
         }
 
         [HttpPost]
         public async Task Post([FromBody] ApiProduct product)
         {
-            var newProduct = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                Availability = 100
-            };
+            var newProduct = product.ToModel().WithNewGuid().WithAvailability(100);
 
             await _catalogService.AddProduct(newProduct);
         }

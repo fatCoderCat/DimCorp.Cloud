@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimCorp.Cloud.Checkout", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimCorp.Cloud.Checkout.Model", "DimCorp.Cloud.Checkout.Model\DimCorp.Cloud.Checkout.Model.csproj", "{334E1CE8-6096-4B6D-8353-9E4ED36FC3DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimCorp.Cloud.Common", "DimCorp.Cloud.Common\DimCorp.Cloud.Common.csproj", "{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,14 @@ Global
 		{334E1CE8-6096-4B6D-8353-9E4ED36FC3DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{334E1CE8-6096-4B6D-8353-9E4ED36FC3DC}.Release|x64.ActiveCfg = Release|Any CPU
 		{334E1CE8-6096-4B6D-8353-9E4ED36FC3DC}.Release|x64.Build.0 = Release|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{A3DA5ABB-4A11-4D6F-A2B2-131F52D8C0D6}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

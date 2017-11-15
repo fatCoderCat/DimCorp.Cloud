@@ -60,41 +60,7 @@ namespace DimCorp.Cloud.ProductCatalog
         protected override async Task RunAsync(CancellationToken cancellationToken)
         {
             _repo = new ServiceFabricProductRepository(this.StateManager);
-            await SeedStorage();
-        }
-
-        private async Task SeedStorage()
-        {
-            var product1 = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = "Dell Monitor",
-                Description = "Computer Monitor",
-                Price = 500,
-                Availability = 100
-            };
-
-            var product2 = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = "Surface Book",
-                Description = "Microsoft's Laptop",
-                Price = 2200,
-                Availability = 15
-            };
-
-            var product3 = new Product
-            {
-                Id = Guid.NewGuid(),
-                Name = "Arc Touch Mouse",
-                Description = "Computer Mouse",
-                Price = 60,
-                Availability = 30
-            };
-
-            await _repo.AddProduct(product1);
-            await _repo.AddProduct(product2);
-            await _repo.AddProduct(product3);
+            await ProductRepositorySeeder.SeedInitialData(_repo);
         }
     }
 }
