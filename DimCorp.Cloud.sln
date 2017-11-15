@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26906.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "DimCorp.Cloud", "DimCorp.Cloud\DimCorp.Cloud.sfproj", "{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimCorp.Cloud.ProductCatalog", "DimCorp.Cloud.ProductCatalog\DimCorp.Cloud.ProductCatalog.csproj", "{F14F0438-7068-42C1-9B56-127476F57960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}.Debug|x64.ActiveCfg = Debug|x64
+		{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}.Debug|x64.Build.0 = Debug|x64
+		{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}.Debug|x64.Deploy.0 = Debug|x64
+		{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}.Release|x64.ActiveCfg = Release|x64
+		{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}.Release|x64.Build.0 = Release|x64
+		{60AA5808-B0E6-4926-B3A1-6DC4D40F0253}.Release|x64.Deploy.0 = Release|x64
+		{F14F0438-7068-42C1-9B56-127476F57960}.Debug|x64.ActiveCfg = Debug|x64
+		{F14F0438-7068-42C1-9B56-127476F57960}.Debug|x64.Build.0 = Debug|x64
+		{F14F0438-7068-42C1-9B56-127476F57960}.Release|x64.ActiveCfg = Release|x64
+		{F14F0438-7068-42C1-9B56-127476F57960}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD2045CC-4CE9-40A4-BEF3-A82054002A6E}
+	EndGlobalSection
+EndGlobal
